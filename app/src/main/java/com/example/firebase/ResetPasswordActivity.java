@@ -2,6 +2,7 @@ package com.example.firebase;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -9,5 +10,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+    }
+
+    public void goBack(View view){
+        finish();
     }
 }

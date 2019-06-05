@@ -9,4 +9,7 @@
     <string name="text_button_register">Register</string>
     <string name="have_account">Already have an account?</string>
     <string name="login_me">Login me</string>
+    <string name="text_button_reset_password">Reset password</string>
+    <string name="back_text">Back</string>
+    <string name="indications_reset_password">We just need your registered email to  sent  you password reset instructions</string>
 </resources>
