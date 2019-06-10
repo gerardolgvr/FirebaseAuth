@@ -8,5 +8,7 @@
     <color name="editTextColorBlack">#000000</color>
 
     <color name="danger">#F13F57</color>
+    <color name="primary">#167184</color>
+
 
 </resources>

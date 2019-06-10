@@ -13,4 +13,5 @@
     <string name="back_text">Back</string>
     <string name="indications_reset_password">We just need your registered email to  sent  you password reset instructions</string>
     <string name="btn_sign_out">Sign out</string>
+    <string name="btn_remove_user">Remove user</string>
 </resources>
