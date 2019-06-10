@@ -6,4 +6,7 @@
 
     <color name="editTextColorWhite">#FFFFFF</color>
     <color name="editTextColorBlack">#000000</color>
+
+    <color name="danger">#F13F57</color>
+
 </resources>

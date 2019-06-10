@@ -11,12 +11,27 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <TextView
-        android:id="@+id/text"
-        android:text="Hola mundo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <Button
+            android:id="@+id/btn_sing_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_sign_out"
+            android:textColor="@android:color/white"
+            android:background="@color/danger"
+            android:textStyle="bold"/>
+
+
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
