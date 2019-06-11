@@ -15,7 +15,7 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements Dialog.DialogListener, DialogEmail.DialogEmailListener {
+public class MainActivity extends AppCompatActivity implements Dialog.DialogListener, DialogEmail.DialogEmailListener, DialogNewPassword.DialogNewPasswordListener {
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     private String password;
     private String operation;
 
-    Button btn_signOut, btn_remove_user, btn_change_email;
+    Button btn_signOut, btn_remove_user, btn_change_email, btn_change_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         btn_signOut = (Button) findViewById(R.id.btn_sing_out);
         btn_remove_user = (Button) findViewById(R.id.btn_remove_user);
         btn_change_email = (Button) findViewById(R.id.btn_change_email);
+        btn_change_password = (Button) findViewById(R.id.btn_change_password);
 
         //event sign out
         btn_signOut.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,15 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
             }
         });
 
-
+        //event change password
+        btn_change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operation = "newPassword";
+                openNewPasswordDialog();
+                openDialog();
+            }
+        });
 
     }
 
@@ -93,6 +102,11 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     public void openEmailDialog(){
         DialogEmail dialog = new DialogEmail();
         dialog.show(getSupportFragmentManager(), "DialogEmail");
+    }
+
+    public void openNewPasswordDialog(){
+        DialogNewPassword dialog = new DialogNewPassword();
+        dialog.show(getSupportFragmentManager(), "DialogNewPassword");
     }
 
 
@@ -123,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
                                     });
                         }
                     });
-        } else if(operation == "updateEmail"){
+        } else {
             this.password = password;
         }
 
@@ -154,6 +168,31 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         Toast.makeText(getApplicationContext(), "Email Updated!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
+    }
+
+    @Override
+    public void getNewPassword(final String newPassword) {
+        //validating input data
+        if(password.equals("")){
+            Toast.makeText(getApplicationContext(), "Error! New password required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(user.getEmail(), this.password);
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        user.updatePassword(newPassword)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(getApplicationContext(), "Password Updated!", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     }

@@ -14,6 +14,7 @@
     <string name="indications_reset_password">We just need your registered email to  sent  you password reset instructions</string>
     <string name="btn_sign_out">Sign out</string>
     <string name="btn_remove_user">Remove user</string>
-    <string name="btn_change_email">Change email</string>
+    <string name="btn_change_email">Update email</string>
     <string name="hint_email">Email</string>
+    <string name="btn_change_password">Update password</string>
 </resources>

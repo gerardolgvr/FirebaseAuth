@@ -21,7 +21,7 @@ public class Dialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.text_input, null);
 
         builder.setView(view)
-                .setTitle("Your password:")
+                .setTitle("Actual password:")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
