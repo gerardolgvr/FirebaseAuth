@@ -38,6 +38,16 @@
             android:layout_marginBottom="10dp"/>
 
         <Button
+            android:id="@+id/btn_reset_by_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_reset_password"
+            android:textColor="@android:color/white"
+            android:background="@color/primary"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
             android:id="@+id/btn_remove_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

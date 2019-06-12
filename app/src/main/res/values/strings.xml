@@ -17,4 +17,5 @@
     <string name="btn_change_email">Update email</string>
     <string name="hint_email">Email</string>
     <string name="btn_change_password">Update password</string>
+    <string name="btn_reset_password">Send email for reset password</string>
 </resources>

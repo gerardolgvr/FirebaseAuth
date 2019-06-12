@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     private String password;
     private String operation;
 
-    Button btn_signOut, btn_remove_user, btn_change_email, btn_change_password;
+    Button btn_signOut, btn_remove_user, btn_change_email, btn_change_password, btn_reset_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         btn_remove_user = (Button) findViewById(R.id.btn_remove_user);
         btn_change_email = (Button) findViewById(R.id.btn_change_email);
         btn_change_password = (Button) findViewById(R.id.btn_change_password);
+        btn_reset_password = (Button) findViewById(R.id.btn_reset_by_email);
 
         //event sign out
         btn_signOut.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +78,24 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
                 operation = "newPassword";
                 openNewPasswordDialog();
                 openDialog();
+            }
+        });
+
+        //event change password instructions
+        btn_reset_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.sendPasswordResetEmail(user.getEmail())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 
