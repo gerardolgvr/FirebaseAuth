@@ -85,17 +85,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         btn_reset_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.sendPasswordResetEmail(user.getEmail())
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                sendResetEmailPassword();
             }
         });
 
@@ -126,6 +116,20 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     public void openNewPasswordDialog(){
         DialogNewPassword dialog = new DialogNewPassword();
         dialog.show(getSupportFragmentManager(), "DialogNewPassword");
+    }
+
+    public void sendResetEmailPassword(){
+        mAuth.sendPasswordResetEmail(user.getEmail())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
